@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   validates :title, :description, :image_url, presence: { message: 'must be given please.'}
   
-  validates :title, uniqueness: true
+  validates :title, allow_blank: true, uniqueness: true, length: {minimum: 10}
 
   validates :price, numericality: { greater_than_or_equal_to: 0.01}
   
