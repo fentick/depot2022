@@ -9,11 +9,22 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get products_url
     assert_response :success
+
+    assert_select 'table', 1
+    assert_select 'tr td', minimum: 3
+    assert_select 'ul li', minimum: 3
+    assert_select 'h1', 'Products'
   end
 
   test "should get new" do
     get new_product_url
     assert_response :success
+
+    assert_select 'h1', 'New product'
+    assert_select 'label', 4
+    assert_select 'input', 4
+    assert_select 'a', 'Back to products'
+# not solved    assert_select 'inline', 'Create Product'
   end
 
   test "should create product" do
