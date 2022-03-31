@@ -17,14 +17,14 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create line_item" do
     assert_difference("LineItem.count") do
-      post line_items_url, params: {product_id: products(:ruby).id }
-#      post line_items_url, params: { line_item: { cart_id: @line_item.cart_id, product_id: @line_item.product_id } }
+      post line_items_url, params: {card_id: carts(:one).id, product_id: products(:ruby).id }
+#     post line_items_url, params: { line_item: { cart_id: @line_item.cart_id, product_id: @line_item.product_id } }
     end
 
       follow_redirect!
       
       assert_select 'h2', 'Your Cart'
-      assert_select 'td', "Programming Ruby 1.9"
+      assert_select 'td', 'Programming Ruby 1.9'
 
 #    assert_redirected_to line_item_url(LineItem.last)
   end
@@ -50,5 +50,22 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to line_items_url
+  end
+  
+  test "should not duplicate the products in the cart" do
+    post line_items_url, params: { product_id: products(:two).id }
+    @cart = Cart.find(session[:cart_id])
+
+    assert_difference("LineItem.count", 0) do
+      post line_items_url, params: { cart_id: @cart.id, product_id: products(:two).id }
+    end
+  end
+
+  test "should create new product in the cart" do
+    @cart = Cart.create
+
+    assert_difference("LineItem.count") do
+      post line_items_url, params: { cart_id: @cart.id, product_id: products(:ruby).id}
+    end
   end
 end

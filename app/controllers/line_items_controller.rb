@@ -6,6 +6,8 @@ class LineItemsController < ApplicationController
 
   before_action :set_line_item, only: %i[ show edit update destroy ]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_line_item
+  
   # GET /line_items or /line_items.json
   def index
     @line_items = LineItem.all
@@ -77,5 +79,9 @@ class LineItemsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def line_item_params
       params.require(:line_item).permit(:product_id)
+    end
+
+    def invalid_line_item
+      redirect_to store_index_url, notice: 'The link is Invalid.'
     end
 end

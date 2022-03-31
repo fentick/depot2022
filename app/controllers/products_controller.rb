@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_product
+
   # GET /products or /products.json
   def index
     @products = Product.all
@@ -68,4 +70,8 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:title, :description, :image_url, :price)
     end
+
+  def invalid_product
+    redirect_to store_index_url, notice: 'The Product link is invalid.'
+  end
 end
