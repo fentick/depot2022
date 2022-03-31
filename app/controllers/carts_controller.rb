@@ -3,7 +3,6 @@ class CartsController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 
-
   # GET /carts or /carts.json
   def index
     @carts = Cart.all
@@ -11,6 +10,7 @@ class CartsController < ApplicationController
 
   # GET /carts/1 or /carts/1.json
   def show
+    cart_session_check
   end
 
   # GET /carts/new
@@ -75,5 +75,11 @@ class CartsController < ApplicationController
     def invalid_cart
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to store_index_url, notice: 'Sorry, the Cart does not exist.'
+    end
+
+    def cart_session_check
+      if @cart.id != session[:cart_id]
+        redirect_to store_index_url, notice: 'Sorry, the Cart is not available.'
+      end
     end
 end
