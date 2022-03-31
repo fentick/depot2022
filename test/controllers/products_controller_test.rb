@@ -24,7 +24,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'label', 4
     assert_select 'input', 4
     assert_select 'a', 'Back to products'
-# not solved    assert_select 'inline', 'Create Product'
+# not solved    assert_select 'input', 'Create Product'
   end
 
   test "should create product" do
