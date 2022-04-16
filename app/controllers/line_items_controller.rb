@@ -73,16 +73,31 @@ class LineItemsController < ApplicationController
   # POST
   def reduce
     product = Product.find(params[:product_id])
+    if @line_item.quantity > 1
+      @line_item = @cart.reduce_product(product)
 
-    @line_item = @cart.reduce_product(product)
-    respond_to do |format|
-      if @line_item.save
-        format.turbo_stream { @current_item = @line_item }
+      respond_to do |format|
+        if @line_item.save
+          format.turbo_stream { @current_item = @line_item }
+          format.html { redirect_to store_index_url }
+          format.json { render :show, status: :ok, location: @line_item }
+        else
+          format.html { redirect_to store_index_url }
+          format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        end
+      end
+
+    elsif @line_item.quantity = 1
+      @line_item.destroy
+
+      respond_to do |format|
         format.html { redirect_to store_index_url }
-        format.json { render :show, status: :ok, location: @line_item }
-      else
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
         format.html { redirect_to store_index_url }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.json { head :no_content }
       end
     end
   end
