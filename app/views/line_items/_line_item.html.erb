@@ -4,9 +4,34 @@
 <% else %>
   <tr>
 <% end %>
-    <td class="text-right"><%= line_item.quantity %></td>
+    <td>
+      <button type="submit">
+        <%= link_to reduce_line_item_path(line_item, product_id: line_item.product_id) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+          </svg>
+        <% end %>
+      </button>
+    </td>
+
+    <td class="text-right">
+      <%= line_item.quantity %>
+    </td>
+    
+    <td>
+      <%= button_to line_items_path(product_id: line_item.product_id) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+        </svg>
+      <% end %>
+    </td>
+    
     <td>&times;</td>
     <td class="pr-2"><%= line_item.product.title %></td>
     <td class="text-right font-bold"><%= number_to_currency(line_item.total_price) %></td>
+
+    <td><%= line_item.id %></td>
   </tr>
+
+
 

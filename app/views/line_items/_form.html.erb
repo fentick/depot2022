@@ -10,6 +10,12 @@
       </ul>
     </div>
   <% end %>
+  
+  <% if line_item.nil? %>
+    <p>nil</p>
+  <% else %>
+    <p><%= line_item.id %></p>
+  <% end %>
 
   <div class="my-5">
     <%= form.label :product_id %>
