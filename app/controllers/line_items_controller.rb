@@ -70,7 +70,7 @@ class LineItemsController < ApplicationController
     end
   end
 
-  # GET
+  # POST
   def reduce
     product = Product.find(params[:product_id])
 

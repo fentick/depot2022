@@ -5,13 +5,11 @@
   <tr>
 <% end %>
     <td>
-      <button type="submit">
-        <%= link_to reduce_line_item_path(line_item, product_id: line_item.product_id) do %>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
-          </svg>
-        <% end %>
-      </button>
+      <%= button_to reduce_line_item_path(line_item, product_id: line_item.product_id) do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
+        </svg>
+      <% end %>
     </td>
 
     <td class="text-right">
