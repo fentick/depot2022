@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project setup and developed with Book guide: Agile Web Development with Rails 7 beta 2.0
 
-Things you may want to cover:
+* Ruby version: 3.1.0preview1
 
-* Ruby version
+* System: wsl2 - ubuntu 20.04 LTS 
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Database: default sqlite3
