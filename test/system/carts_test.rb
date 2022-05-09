@@ -10,7 +10,7 @@ class CartsTest < ApplicationSystemTestCase
 
     click_on 'Empty Cart'
 
-    assert has_text? 'Your Cart'
+    assert has_no_text? 'Your Cart'
 
   end
 end
