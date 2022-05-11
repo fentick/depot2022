@@ -1,0 +1,23 @@
+{
+  "name": "depot",
+  "version": "1.0.0",
+  "description": "Project setup and developed with Book guide: Agile Web Development with Rails 7 beta 2.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fentick/depot2022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fentick/depot2022/issues"
+  },
+  "homepage": "https://github.com/fentick/depot2022#readme"
+}
