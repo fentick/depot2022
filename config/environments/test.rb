@@ -36,12 +36,33 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
 
-  config.action_mailer.perform_caching = false
+  #config.action_mailer.perform_caching = false
+
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.perform_deliveries = true
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
+
   config.action_mailer.delivery_method = :test
+
+  # config.action_mailer.delivery_method = :smtp
+
+  # config.action_mailer.smtp_settings = {
+  #   address: "smtp.exmail.qq.com",
+  #   port: 465,
+  #   domain: "usingnow.com",
+  #   authentication: "login",
+  #   user_name: "",
+  #   password: "",
+  #   enable_starttls_auto: true,
+  #   ssl: true
+  # }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
